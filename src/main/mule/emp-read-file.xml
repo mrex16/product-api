@@ -38,6 +38,14 @@ payload map ( payload01 , indexOfPayload01 ) -> {
 			<db:sql ><![CDATA[insert into emp_master(EMP_ID, EMP_NAME,EMP_SAL, EMP_ADDRESS, EMP_PHONE, EMP_EMAIL) value (:EMP_ID,:EMP_NAME,:EMP_SAL,:EMP_ADDRESS,:EMP_PHONE,:EMP_EMAIL)
 ]]></db:sql>
 		</db:bulk-insert>
+		<ee:transform doc:name="Transform Message" doc:id="692954fd-d4be-4ec3-a024-dc074b704f5b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 		<logger level="INFO" doc:name="Logger" doc:id="95fab139-07fb-4774-8b1f-deaf62010c35" message="#[payload]"/>
 	</flow>
 </mule>
